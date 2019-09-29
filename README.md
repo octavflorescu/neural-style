@@ -63,11 +63,11 @@ golden gate bridge:
 
 ## 0. Preparations for CUDA running on Ubuntu docker
 ### 0.1. Install Ubuntu OS
-Make sure you have enough space for docker images
+Make sure you have enough space for docker images  
 20GB for Ubuntu OS + ~10GB for docker images + something extra
 ### 0.2. Install nvidia driver, cuda, cudnn on your main OS
-I have followed this: https://medium.com/repro-repo/install-cuda-10-1-and-cudnn-7-5-0-for-pytorch-on-ubuntu-18-04-lts-9b6124c44cc
-*When this gets outdated, before building/running the docker, do not forget to also update its starting (source) nvidia docker cuda image.*
+I have followed this: https://medium.com/repro-repo/install-cuda-10-1-and-cudnn-7-5-0-for-pytorch-on-ubuntu-18-04-lts-9b6124c44cc  
+*When this gets outdated, before building/running the docker, do not forget to also update its starting (source) nvidia docker cuda image.*  
 
 ## 1. Install docker
 Install docker using [that instructions](https://docs.docker.com/engine/installation/)
@@ -76,7 +76,7 @@ Install docker using [that instructions](https://docs.docker.com/engine/installa
 ```
 docker pull ffedoroff/neural-style
 ```
-## 2.1. Or build it yourself for CUDA
+### 2.1. Or build it yourself for CUDA
 ```
 (sudo) docker build -t neural_transfer
 ```

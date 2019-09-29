@@ -1,3 +1,4 @@
+# CUDA 10.1 implementation of
 # neural-style docker
 
 This is a docker implementation of 
@@ -5,6 +6,7 @@ This is a docker implementation of
 
 This docker container allows you to easily run complicated neural networks with any of your images.
 Just install this docker container, run one command and get result. No configuration required.
+Only if you run with CUDA...
 
 Latest version available on 
 github [https://github.com/ffedoroff/neural-style](https://github.com/ffedoroff/neural-style) and 
@@ -57,17 +59,29 @@ golden gate bridge:
 <img src="https://raw.githubusercontent.com/jcjohnson/neural-style/master/examples/inputs/seated-nude.jpg" height="160px">
 <img src="https://raw.githubusercontent.com/jcjohnson/neural-style/master/examples/outputs/golden_gate_seated.png" height="160px">
 
-# setup
+# Setup
+
+## 0. Preparations for CUDA running on Ubuntu docker
+### 0.1. Install Ubuntu OS
+Make sure you have enough space for docker images
+20GB for Ubuntu OS + ~10GB for docker images + something extra
+### 0.2. Install nvidia driver, cuda, cudnn on your main OS
+I have followed this: https://medium.com/repro-repo/install-cuda-10-1-and-cudnn-7-5-0-for-pytorch-on-ubuntu-18-04-lts-9b6124c44cc
+*When this gets outdated, before building/running the docker, do not forget to also update its starting (source) nvidia docker cuda image.*
 
 ## 1. Install docker
 Install docker using [that instructions](https://docs.docker.com/engine/installation/)
-
+### 1.1. Install nvidia-docker for CUDA usage
 ## 2. Install this container 
 ```
 docker pull ffedoroff/neural-style
 ```
+## 2.1. Or build it yourself for CUDA
+```
+(sudo) docker build -t neural_transfer
+```
 
-# run
+# Run
 
 ## 
 You should create folder on local computer for your source and style images.
@@ -105,6 +119,12 @@ docker run -v ~/prism/03:/out -i -d -t ffedoroff/neural-style th neural_style.lu
 -style_image style.jpg -content_image source.jpg
 ```
 
+## CUDA:
+```
+nvidia-docker run -v ~/prism/03:/out -i -d -t neural_transfer th neural_style.lua \
+              -gpu 0 -backend cudnn -cudnn_autotune \
+              -style_image style.jpg -content_image source.jpg
+```
 # options
 
 To use multiple style images, pass a comma-separated list like this:

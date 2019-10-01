@@ -78,7 +78,8 @@ docker pull ffedoroff/neural-style
 ```
 ### 2.1. Or build it yourself for CUDA
 ```
-(sudo) docker build -t neural_transfer
+cd ~/neural-style
+(sudo) docker build -t neural_transfer .
 ```
 
 # Run
